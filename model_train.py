@@ -1,7 +1,7 @@
 # @Author: ASHISH SASMAL <ashish>
 # @Date:   21-11-2020
 # @Last modified by:   ashish
-# @Last modified time: 21-11-2020
+# @Last modified time: 23-11-2020
 
 import time
 
@@ -20,7 +20,7 @@ import os
 print(f"[ Importing libraries time :: {time.time()-start_time}]")
 
 
-IMG_SAVE_PATH = 'Images'
+IMG_SAVE_PATH = 'Images2'
 
 """
 def getModel():
@@ -36,6 +36,8 @@ for dir in os.listdir(IMG_SAVE_PATH):
     for item in os.listdir(path):
         img = cv2.imread(os.path.join(path, item))
         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+        # img = cv2.threshold(img,180,255,cv2.THRESH_BINARY_INV)[1]
         img = cv2.resize(img, (227, 227))
         dataset.append([img, dir])
 
@@ -64,7 +66,7 @@ A one hot encoding is a representation of categorical variables as binary vector
 labels = np_utils.to_categorical(labels)
 
 model = Sequential([
-    SqueezeNet(input_shape=(227, 227, 3), include_top=False),
+    SqueezeNet(input_shape=(227, 227,3), include_top=False),
     Dropout(0.5),
     Convolution2D(4, (1, 1), padding='valid'),
     Activation('relu'),
